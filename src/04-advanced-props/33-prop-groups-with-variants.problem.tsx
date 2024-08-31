@@ -1,5 +1,10 @@
 import { ComponentProps } from "react";
 
+
+//type map = Record<string, ComponentProps<"button">>;
+//type map = Record<"reset"|"submit"|"next", ComponentProps<"button">>;
+//type map = Record<"reset"|"submit"|"next", ComponentProps<"button">>;
+
 const buttonPropsMap = {
   reset: {
     className: "bg-blue-500 text-white",
@@ -19,7 +24,18 @@ const buttonPropsMap = {
     // @ts-expect-error
     illegalProperty: "whatever",
   },
-};
+}satisfies  Record<string, ComponentProps<"button">>;
+
+//So we don't have to do this buttonPropsMap: Record<"reset"|"submit"|"next", ComponentProps<"button">>
+
+// const props:ComponentProps<"button"> = {
+//   reset: {
+//     className: "bg-blue-500 text-white",
+//     type: "reset",
+//     illegalProperty: "whatever",
+//   }
+// }
+const buttonPropsMapType = typeof buttonPropsMap;
 
 type ButtonProps = {
   variant: keyof typeof buttonPropsMap;

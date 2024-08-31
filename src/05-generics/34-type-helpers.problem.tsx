@@ -2,8 +2,13 @@ type Icon = "home" | "settings" | "about";
 type ButtonVariant = "primary" | "secondary" | "tertiary";
 
 // How do we refactor this to make it DRY?
-type LooseIcon = Icon | (string & {});
-type LooseButtonVariant = ButtonVariant | (string & {});
+// type LooseIcon = Icon | (string & {});
+// type LooseButtonVariant = ButtonVariant | (string & {});
+
+type LooseAutoComplete<T> = T |  (string & {});
+type LooseIcon = LooseAutoComplete<Icon>;
+type LooseButtonVariant = LooseAutoComplete<ButtonVariant>;
+
 
 export const icons: LooseIcon[] = [
   "home",

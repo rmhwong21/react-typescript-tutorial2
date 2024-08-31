@@ -1,10 +1,15 @@
-type ModalProps =
-  | {
+
+
+type ModalProps = (
+   {
       variant: "no-title";
     }
   | {
       variant: "title";
       title: string;
+    }) & 
+    {
+      buttonColor: string
     };
 
 /**
