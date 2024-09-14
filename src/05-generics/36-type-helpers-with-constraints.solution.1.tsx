@@ -1,8 +1,10 @@
 import { Equal, Expect } from "../helpers/type-utils";
 
-type AllOrNothing<T extends object> = T | ToUndefinedObject<T>;
+// type AllOrNothing2<T extends object> = T | ToUndefinedObject<T>;
 
-type ToUndefinedObject<T extends object> = Partial<Record<keyof T, undefined>>;
+type AllOrNothing<T extends { [keysadsa: string]: unknown }> = T | ToUndefinedObject<T>;
+
+type ToUndefinedObject<T extends { [keysadsadsa: string]: unknown }> = Partial<Record<keyof T, undefined>>;
 
 type tests = [
   // @ts-expect-error
