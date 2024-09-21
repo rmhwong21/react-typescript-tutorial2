@@ -1,19 +1,20 @@
 import { createUser } from "fake-external-lib";
 import { useState } from "react";
 import { Equal, Expect } from "../helpers/type-utils";
+import { expect } from "vitest";
 
-type Mutation = (...args: any[]) => Promise<any>;
+type Mutation<TArgs extends any[], TReturn> = (...args: TArgs) => Promise<TReturn>;
 
-interface UseMutationReturn {
-  mutate: Mutation;
+interface UseMutationReturn<TArgs extends any[], TReturn> {
+  mutate: Mutation<TArgs,TReturn>;
   isLoading: boolean;
 }
 
-interface UseMutationOptions {
-  mutation: Mutation;
+interface UseMutationOptions<TArgs extends any[], TReturn> {
+  mutation: Mutation<TArgs, TReturn>;
 }
 
-export const useMutation = (opts: UseMutationOptions): UseMutationReturn => {
+export const useMutation = <TArgs extends any[], TReturn>(opts: UseMutationOptions<TArgs, TReturn>): UseMutationReturn<TArgs, TReturn> => {
   const [isLoading, setIsLoading] = useState(false);
 
   return {
