@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Children, ReactNode } from "react";
 
 /**
  * In this example we have a Select component. Through some magic, we're
@@ -17,17 +17,25 @@ import { ReactNode } from "react";
  */
 
 type OptionType = {
-  __brand: "OPTION_TYPE";
+  __brand?: "OPTION_TYPE";
 } & ReactNode;
 
 const Option = () => {
   return (<option></option>) as OptionType;
 };
 
+const Option2 = () => {
+  return (<option></option>);
+};
+
+
 const Select = (props: { children: OptionType }) => {
+
   return <select>{props.children}</select>;
 };
 
 <Select>
+  {/* {Option()} */}
   <Option />
+  <Option2 />
 </Select>;
