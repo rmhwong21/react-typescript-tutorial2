@@ -10,6 +10,19 @@
  * interface in the JSX namespace.
  */
 
+declare global {
+    /**
+     * @deprecated Use `React.JSX` instead of the global `JSX` namespace.
+     */
+    namespace JSX {
+        interface IntrinsicElements {
+          something: {
+               id: string;
+            }
+        }
+    }
+}
+
 <>
   <something id="123"></something>
 

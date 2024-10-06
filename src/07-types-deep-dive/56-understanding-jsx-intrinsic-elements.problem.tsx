@@ -8,6 +8,19 @@
 
 export type Example = JSX.IntrinsicElements;
 
+// declare global {
+//     /**
+//      * @deprecated Use `React.JSX` instead of the global `JSX` namespace.
+//      */
+//     namespace JSX {
+//         interface IntrinsicElements {
+//             myNewElement: {
+//                foo: string;
+//             }
+//         }
+//     }
+// }
+
 /**
  * 2. What is the structure of JSX.IntrinsicElements? It appears to have the
  * HTML attributes as properties, but what are the values?

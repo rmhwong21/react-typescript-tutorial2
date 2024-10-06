@@ -16,9 +16,22 @@ export type Example = React.ElementType<{
 /**
  * ComponentType
  */
+
+// const FunctComponent2 = (props: {propX: string}) =>{
+//     return null;
+// }
+
 const FuncComponent = (props: { prop1: string }) => {
   return null;
 };
+
+// class ClassComponent2 extends React.Component<{propX: string}>
+// {
+//   render(): React.ReactNode {
+//     this.props.propX;
+//     return null;
+//   }
+// }
 
 class ClassComponent extends React.Component<{
   prop1: string;
@@ -29,7 +42,8 @@ class ClassComponent extends React.Component<{
   }
 }
 
-const tests2: Array<React.ComponentType<{ prop1: string }>> = [
+const tests2: Array<React.ComponentType<{ prop1: string}>> = [
+  //FunctComponent2,
   FuncComponent,
   ClassComponent,
 ];
