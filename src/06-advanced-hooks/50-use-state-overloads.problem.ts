@@ -19,6 +19,18 @@ useState;
  * HINT - you'll need to use the function keyword THREE times.
  */
 
+/**
+ *   Hello from default string overload
+ */
+function maybeReturnsString(defaultString: string): string;
+
+/**
+ *
+ *  Hello form no string overload
+ */
+function maybeReturnsString(): string| undefined;
+
+
 function maybeReturnsString(defaultString?: string) {
   // If you pass a string, it always returns a string
   if (defaultString) {

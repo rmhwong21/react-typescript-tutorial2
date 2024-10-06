@@ -15,6 +15,7 @@ type ClickMeThree = React.ReactNode;
 const Component = () => {
   return <div>Hello world</div>;
 };
+//JSX.Element
 
 /**
  * 3. Fun fact - this might break on your IDE! In

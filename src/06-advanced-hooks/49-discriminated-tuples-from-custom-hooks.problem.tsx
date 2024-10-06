@@ -1,10 +1,22 @@
 import { useEffect, useState } from "react";
 
-export type Result<T> = [
-  "loading" | "success" | "error",
-  T | Error | undefined,
-];
+// export type Result<T> = [
+//   "loading" | "success" | "error",
+//   T | Error | undefined,
+// ];
 
+//My Solution
+// export type Result<T> =
+//    ["loading", T | undefined] | 
+//    ["error", {message: string} ] | 
+//    ["success", {title: string}]
+
+export type Result<T> =
+   ["loading",  undefined?] | 
+   ["error", Error ] | 
+   ["success", T]
+
+   
 /**
  * Let's look at one more example of discriminated unions. This time, we're
  * going to use them to make the tuple return type of a hook smarter.
