@@ -1,8 +1,12 @@
-import { lazy, Suspense, useMemo } from "react";
+import { ComponentProps, ComponentType, lazy, Suspense, useMemo } from "react";
 
-type Props = {
-  loader: unknown;
-};
+type Props<T extends ComponentType<any>> = {
+  loader: () => Promise<{ default: T }>;
+}& ComponentProps<T>;
+
+// function lazy<T extends ComponentType<any>>(
+//   load: () => Promise<{ default: T }>,
+// ): LazyExoticComponent<T>;
 
 /**
  * 1. This component is supposed to take a loader function that returns a
@@ -16,7 +20,7 @@ type Props = {
  * - You'll need to make this a generic component!
  * - React.ComponentProps will come in handy, as will React.ComponentType
  */
-function LazyLoad({ loader, ...props }: Props) {
+function LazyLoad<T extends ComponentType<any>>({ loader, ...props }: Props<T>) {
   const LazyComponent = useMemo(() => lazy(loader), [loader]);
 
   return (
@@ -31,6 +35,7 @@ function LazyLoad({ loader, ...props }: Props) {
 
   <LazyLoad
     loader={() => import("fake-external-component")}
+    foo="sad"
     // @ts-expect-error number is not assignable to string
     id={123}
   />

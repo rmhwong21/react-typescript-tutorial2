@@ -8,14 +8,14 @@
 
 import { AriaAttributes, DOMAttributes } from "react";
 
-declare global {
-  namespace React {
-    //type DetailedHTMLProps<E extends HTMLAttributes<T>, T> = ClassAttributes<T> & E;
-    interface HTMLAttributes<T>  {
-      testId: string
-    }
-  }
-}
+// declare global {
+//   namespace React {
+//     //type DetailedHTMLProps<E extends HTMLAttributes<T>, T> = ClassAttributes<T> & E;
+//     interface HTMLAttributes<T>  {
+//       testId: string
+//     }
+//   }
+// }
 
 <>
   <div testId="123" />

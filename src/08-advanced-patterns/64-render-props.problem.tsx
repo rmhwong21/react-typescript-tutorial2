@@ -17,7 +17,11 @@ interface ModalChildProps {
   closeModal: () => void;
 }
 
-const Modal = ({ children }: any) => {
+//const Modal = ({ children }: { children: (props: ModalChildProps)=> React.ReactNode }) => {
+const Modal = ({ children }: { children: React.FC<ModalChildProps> }) => {
+//type FC<P = {}> = FunctionComponent<P>;
+
+//const Modal = ({ children }:any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -29,7 +33,7 @@ const Modal = ({ children }: any) => {
       })}
       {createPortal(
         <div>
-          <h1>Modal</h1>
+          <h1>Modalasxa Foo Bar</h1>
         </div>,
         document.getElementById("modal-root")!,
       )}
@@ -39,17 +43,31 @@ const Modal = ({ children }: any) => {
 
 const Parent = () => {
   return (
-    <Modal>
-      {(props) => {
-        type test = Expect<Equal<typeof props, ModalChildProps>>;
+    // <Modal>
+    //   {(props) => {
+    //     type test = Expect<Equal<typeof props, ModalChildProps>>;
 
-        return (
-          <>
-            <button onClick={props.openModal}>Open Modal</button>
-            <button onClick={props.closeModal}>Close Modal</button>
-          </>
-        );
-      }}
-    </Modal>
+    //     return (
+    //       <>
+    //         <button onClick={props.openModal}>Open Modal</button>
+    //         <button onClick={props.closeModal}>Close Modal</button>
+    //       </>
+    //     );
+    //   }}
+    // </Modal>
+
+    <Modal children={(props) => {
+      type test = Expect<Equal<typeof props, ModalChildProps>>;
+
+      return (
+        <>
+          <button onClick={props.openModal}>Open Modal</button>
+          <button onClick={props.closeModal}>Close Modal</button>
+        </>
+      );
+    }}>
+
+  </Modal>
+
   );
 };
