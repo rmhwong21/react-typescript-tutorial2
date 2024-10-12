@@ -24,7 +24,30 @@
 
 import { Equal, Expect } from "../helpers/type-utils";
 
-export const Wrapper = (props: any) => {
+// export const Wrapper = <TAs extends keyof JSX.IntrinsicElements,>
+// ( props: {
+//   as: TAs;
+// } & React.ComponentProps<TAs>) => {
+//   const Comp = props.as;
+//   return <Comp {...(props as any)}></Comp>;
+// };
+
+// type asProps =  JSX.IntrinsicElements & {as:  keyof JSX.IntrinsicElements}
+// & React.ComponentProps<keyof JSX.IntrinsicElements>
+
+type asProps = {
+  [k in keyof  JSX.IntrinsicElements]:  {as : k} 
+  & React.ComponentProps<k>
+}[keyof JSX.IntrinsicElements]
+
+// type AsProps = {
+//   [K in keyof JSX.IntrinsicElements]: { as: K;} 
+//   & JSX.IntrinsicElements[K];
+
+// }[keyof JSX.IntrinsicElements];
+
+
+export const Wrapper = (props: asProps) => {
   const Comp = props.as;
   return <Comp {...(props as any)}></Comp>;
 };
