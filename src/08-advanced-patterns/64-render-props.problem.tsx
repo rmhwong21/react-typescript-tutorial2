@@ -43,31 +43,31 @@ const Modal = ({ children }: { children: React.FC<ModalChildProps> }) => {
 
 const Parent = () => {
   return (
-    // <Modal>
-    //   {(props) => {
-    //     type test = Expect<Equal<typeof props, ModalChildProps>>;
+    <Modal>
+      {(props) => {
+        type test = Expect<Equal<typeof props, ModalChildProps>>;
 
-    //     return (
-    //       <>
-    //         <button onClick={props.openModal}>Open Modal</button>
-    //         <button onClick={props.closeModal}>Close Modal</button>
-    //       </>
-    //     );
-    //   }}
-    // </Modal>
+        return (
+          <>
+            <button onClick={props.openModal}>Open Modal</button>
+            <button onClick={props.closeModal}>Close Modal</button>
+          </>
+        );
+      }}
+    </Modal>
 
-    <Modal children={(props) => {
-      type test = Expect<Equal<typeof props, ModalChildProps>>;
+  //   <Modal children={(props) => {
+  //     type test = Expect<Equal<typeof props, ModalChildProps>>;
 
-      return (
-        <>
-          <button onClick={props.openModal}>Open Modal</button>
-          <button onClick={props.closeModal}>Close Modal</button>
-        </>
-      );
-    }}>
+  //     return (
+  //       <>
+  //         <button onClick={props.openModal}>Open Modal</button>
+  //         <button onClick={props.closeModal}>Close Modal</button>
+  //       </>
+  //     );
+  //   }}>
 
-  </Modal>
+  // </Modal>
 
   );
 };
