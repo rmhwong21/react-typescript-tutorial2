@@ -1,5 +1,6 @@
 import {
   ComponentPropsWithoutRef,
+  ComponentPropsWithRef,
   ElementType,
   ForwardedRef,
   forwardRef,
@@ -14,10 +15,25 @@ import { Equal, Expect } from "../helpers/type-utils";
  * So, don't feel bad if you don't find it at all.
  */
 
+type DistributiveOmit<T, TOmitted extends PropertyKey> = T extends any
+  ? Omit<T, TOmitted>
+  : never;
+
+export const UnwrappedLink2 = <TAs extends ElementType>(
+  props: {
+    as?: TAs;
+  //} & React.ComponentPropsWithRef<ElementType extends TAs ? "a" : TAs>,
+  } & DistributiveOmit<ComponentPropsWithRef<ElementType extends TAs ? "a" : TAs>, "as">,
+ref: ForwardedRef<any>,
+) => {
+  const { as: Comp = "a", ...rest } = props;
+  return <Comp {...rest} ref={ref}></Comp>;
+};
+
 export const UnwrappedLink = <TAs extends ElementType>(
   props: {
     as?: TAs;
-  } & ComponentPropsWithoutRef<ElementType extends TAs ? "a" : TAs>,
+  } & DistributiveOmit<ComponentPropsWithRef<ElementType extends TAs ? "a" : TAs>,"as">,
   ref: ForwardedRef<any>,
 ) => {
   const { as: Comp = "a", ...rest } = props;
@@ -26,6 +42,9 @@ export const UnwrappedLink = <TAs extends ElementType>(
 
 const Link = forwardRef(UnwrappedLink);
 
+Link({
+  as: "button"
+})
 /**
  * Should work without specifying 'as'
  */
